@@ -18,19 +18,21 @@ nnoremap i :nohls<CR>i
 
 " Plugin
 call plug#begin()
-Plug 'sainnhe/everforest'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'dense-analysis/ale'
 Plug 'preservim/nerdtree'
 Plug 'preservim/nerdcommenter'
 Plug 'lervag/vimtex'
 Plug 'JuliaEditorSupport/julia-vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'sainnhe/everforest'
+
 " Track the engine.
 Plug 'SirVer/ultisnips'
 " Snippets are separated from the engine. Add this if you want them:
 Plug 'honza/vim-snippets'
-Plug 'dense-analysis/ale'
+
 call plug#end()
 
 "Color scheme
@@ -41,6 +43,7 @@ colorscheme everforest
 "Open NERDTree
 :nnoremap <silent> <expr> <F2> g:NERDTree.IsOpen() ? "\:NERDTreeClose<CR>" : bufexists(expand('%')) ? "\:NERDTreeFind<CR>" : "\:NERDTree<CR>"
 
+"Coc.nvim
 :set completeopt=longest,menuone
 :inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 inoremap <expr> <C-n> pumvisible() ? '<C-n>' :
@@ -58,7 +61,7 @@ inoremap <expr> <S-Space> (pumvisible() ? (col('.') > 1 ? '<Esc>i<Right>' : '<Es
 "Autocomplete with the first option if pop up menu is open.
 inoremap <silent><expr> <TAB> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<TAB>"
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<cr>"
-
+autocmd FileType tex let b:coc_pairs = [["$", "$"]]
 
 " Comments
 let mapleader = ","
@@ -75,7 +78,6 @@ nnoremap <C-Left> <C-W>h
 nnoremap <C-Down> <C-W>j
 nnoremap <C-Up> <C-W>k
 nnoremap <C-Right> <C-W>l
-nnoremap <C-O> <C-W>o
 nnoremap <leader>o :tabonly<CR>
 
 set clipboard+=unnamedplus
@@ -153,8 +155,8 @@ silent call IBusOff()
 
 "Language tool
 let b:ale_linter_aliases = ['tex', 'text']
-"let g:ale_linters = {'tex':['languagetool','proselint']}
 let g:ale_languagetool_executable = "java"
-let g:ale_languagetool_options = "-jar /data/runtimes/languagetool/languagetool-commandline.jar --disable WHITESPACE_RULE, COMMA_PARENTHESIS_WHITESPACE, CURRENCY[1]"
+let g:ale_languagetool_options = "-jar /data/runtimes/languagetool/languagetool-commandline.jar --languagemodel /data/runtimes/languagemodel/ --word2vecmodel /data/runtimes/word2vec/ --disable WHITESPACE_RULE,COMMA_PARENTHESIS_WHITESPACE,CURRENCY[1]"
 let g:ale_disable_lsp = 1
 set signcolumn=number
+map <F3> :ALEToggle<CR>
