@@ -1,0 +1,6 @@
+{"coc.preferences.diagnostic.displayByAle":1,
+    "latex": {
+    "default": true,
+    "lint.whitespace": false
+  }
+}
