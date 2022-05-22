@@ -153,7 +153,7 @@ silent call IBusOff()
 "Language tool
 let b:ale_linter_aliases = ['tex', 'text', 'html']
 let g:ale_languagetool_executable = "java"
-let g:ale_languagetool_options = "-jar /data/runtimes/languagetool/languagetool-commandline.jar --languagemodel /data/runtimes/languagemodel/ --word2vecmodel /data/runtimes/word2vec/ --disable WHITESPACE_RULE,COMMA_PARENTHESIS_WHITESPACE,CURRENCY[1]"
+let g:ale_languagetool_options = "-jar /data/runtimes/languagetool/languagetool-commandline.jar --languagemodel /data/runtimes/languagemodel/ --word2vecmodel /data/runtimes/word2vec/ --disable WHITESPACE_RULE,COMMA_PARENTHESIS_WHITESPACE"
 let g:ale_disable_lsp = 1
 map <F3> :ALEToggle<CR>
 
